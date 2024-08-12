@@ -1,18 +1,14 @@
 # py01003.py
 import math
 def testCase() :
-    n = input()
-    # print(n)
-    length = len(n)
-    x = int(n)
-    x /= 10**(length - 1)
-    # print(x)
-    # print(x - int(x))
-    if (x - int(x) >= 0.5):
-        x = int(x) + 1
-    else:
-        x = int(x)
-    print(x * (10 ** (length - 1)))
+    list_digit = [int(i) for i in input()]
+    for i in range(len(list_digit) - 1, 0, -1):
+        if (list_digit[i] >= 5):
+            list_digit[i - 1] += 1
+        list_digit[i] = 0
+    for i in list_digit:
+        print(i, end="")
+    print()
 def main():
     # Write your code here
     t = int(input())
