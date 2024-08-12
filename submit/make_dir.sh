@@ -30,7 +30,13 @@ else
     echo "- [$1.py]($1.py)" >> README.md
     echo "- [input.txt](input.txt)" >> README.md
     echo "- [output.txt](output.txt)" >> README.md
-
+    echo "# $1.py" > $1.py
+    echo "" >> $1.py
+    echo "def main():" >> $1.py
+    echo "    # Write your code here" >> $1.py
+    echo "" >> $1.py
+    echo "if __name__ == '__main__':" >> $1.py
+    echo "    main()" >> $1.py
     code $1.py
 fi
 
