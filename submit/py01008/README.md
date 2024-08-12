@@ -1,6 +1,7 @@
-## py01007
-![alt text](image.png)
+## py01008
+
 - [README.md](README.md)
+- [image.png](image.png)
 - [input.txt](input.txt)
 - [output.txt](output.txt)
-- [py01007.py](py01007.py)
+- [py01008.py](py01008.py)
