@@ -1,20 +1,27 @@
 # py01043.py
-def isPalindrome(n):
-    reversed_n = n[::-1]
-    if (len(n) % 2 == 1):
-        return False
-    if (n != reversed_n):
-        return False
-    for c in n:
+def check(p):
+    for c in p:
         if (int(c) % 2 == 1):
             return False
     return True
-
+def genPalindromes(limit):
+    res = []
+    for length in range(2, len(str(limit)) + 1, 2):
+        m = length // 2
+        start = 10 ** (m  - 1)
+        end = 10 ** m
+        for i in range(start, end):
+            s = str(i)
+            palindrome = s + s[::-1]
+            if (int(palindrome) < limit):
+                res.append(palindrome)
+    return res
 def testCase() :
-    n = input()
-    for i in range(10, int(n)):
-        if(isPalindrome(str(i))):
-            print(i, end = ' ')
+    n = int(input())
+    res = genPalindromes(n)
+    for p in res:
+        if ((check(p))):
+            print(p, end = ' ')
 
     
 def main():
