@@ -8,7 +8,7 @@ def main():
         for c in n:
             sumDigits += int(c)
         rev = str(sumDigits)[::-1]
-        if (rev == str(sumDigits)):
+        if (len(rev) > 1  and rev == str(sumDigits)):
             print("YES")
         else:
             print("NO")
