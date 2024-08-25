@@ -10,6 +10,7 @@ def main():
         if i not in a:
             print(i)
             return
+    print(maxx+1)        
 
 if __name__ == '__main__':
     main()
