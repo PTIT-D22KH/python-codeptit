@@ -10,7 +10,7 @@ def main():
             res.append(x)
         else:
             if ((res[-1] + x) % 2 == 0):
-                a.pop()
+                res.pop()
             else:
                 res.append(x)
     print(len(res))
