@@ -18,9 +18,11 @@ def main():
     n, x = [int(i) for i in input().split()]
     a = [True] * 10001
     prime = sieve(a)
+    # print(prime)
     print(x, end=' ')
     for i in range(n):
-        print(x + (i + 1) * prime[i], end=' ')
+        x = prime[i] + x
+        print(x, end=' ')
 
 if __name__ == '__main__':
     main()
