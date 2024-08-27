@@ -21,13 +21,20 @@ def main():
     # Write your code here
     for t in range(int(input())):
         global p , q 
-        p, q =  [int(i) for i in input().split()]
+        
+        p, q =  [int(i) for i in input().strip().split()]
         x = min(p, q)
         y = max(p, q)
         p = x
         q = y
-        x1 = input()
-        x2 = input()
+        # x1 = input()
+        # x2 = input()
+        a = input().strip().split()
+        if (len(a) > 1):
+            x1, x2 = a[0], a[1]
+        else:
+            x1 = a[0]
+            x2 = input()
         minRes = minChange(x1) + minChange(x2)
         maxRes = maxChange(x1) + maxChange(x2)
         print(minRes, maxRes)
