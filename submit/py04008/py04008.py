@@ -1,4 +1,3 @@
-# py04008.py
 class Matrix:
     def __init__(self, rows, columns, matrix) -> None:
         self.rows = rows
@@ -20,14 +19,13 @@ class Matrix:
         return res
     
 def main():
-    # Write your code here
     t = int(input())
     ip = []
 
     while True:
         try:
             ip.extend([int(i) for i in input().split()])
-        except: 
+        except:
             break
     curr = 0
     for x in range(t):
@@ -36,16 +34,16 @@ def main():
         a = []
         for i in range(n):
             a.append([0] * m)
-        while (len(ip) - curr < n * m):
+        while len(ip) - curr < n * m:
             ip.append(0)
         for i in range(n):
             for j in range(m):
                 a[i][j] = ip[curr + j]
+            curr += m
         mat = Matrix(n, m, a)
         result = mat.multiplyTranposeMatrix()
         for row in result:
-            print(" ".join(map(str, row)))     
-
+            print(" ".join(map(str, row)))
 
 if __name__ == '__main__':
     main()
