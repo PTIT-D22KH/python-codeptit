@@ -10,10 +10,11 @@ def main():
     c.extend(b)
     union = list(set(c))
     union.sort()
-    intersection = []
+    intersection = set()
     for x in a:
         if x in b:
-            intersection.append(x)
+            intersection.add(x)
+    intersection = list(intersection)
     intersection.sort()
     for x in union:
         print(x, end = ' ')
