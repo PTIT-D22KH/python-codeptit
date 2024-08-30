@@ -3,11 +3,17 @@
 def main():
     # Write your code here
     n = int(input())
-    s = input().split()
+    s = []
+    while True:
+        try:
+            s += [int(i) for i in input().split()]
+        except:
+            break
+
     a = []
     b = []
     for x in s:
-        if (int(x) % 2 == 0):
+        if (x % 2 == 0):
             a.append(int(x))
         else:
             b.append(int(x))
@@ -17,7 +23,7 @@ def main():
     i = 0
     j = 0
     for x in s:
-        if (int(x) % 2 == 0):
+        if (x % 2 == 0):
             print(a[i], end = ' ')
             i += 1
         else:
