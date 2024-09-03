@@ -5,11 +5,9 @@ def main():
     s1 = input()
     s2 = input()
     p = int(input())
-    for i in range(len(s1)):
-        if (i + 1 == p):
-            print(s2, end = '')
-        else:
-            print(s1[i], end = '')
+    p -= 1
+    result = s1[:p] + s2 + s1[p:]
+    print(result)
 
 if __name__ == '__main__':
     main()
