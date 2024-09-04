@@ -1,65 +1,72 @@
 class Time:
-    def __init__(self, *args) -> None:
-        if len(args) == 1:
-            s = args[0]
-            self.hours, self.minutes = map(int, s.split(":"))
-        elif len(args) == 2:
-            self.hours, self.minutes = args
+    def __init__(self, time_str):
+        self.hours, self.minutes = map(int, time_str.split(":"))
 
-    def hourToMinutes(self):
-        return self.hours * 60 + self.minutes
+    def timeDiffToTotalMinutes(self, other):
+        start_minutes = self.hours * 60 + self.minutes
+        end_minutes = other.hours * 60 + other.minutes
+        return end_minutes - start_minutes
 
-    def timeDiff(self, other):
-        x = other.hours - self.hours
-        y = other.minutes - self.minutes
-        if y < 0:
-            y += 60
-            x -= 1
-        return Time(x, y)
+    @staticmethod
+    def minutesToHourDecimal(minutes):
+        return minutes / 60.0
 
 class Station:
-    def __init__(self, name, startTime, endTime, rainVolume) -> None:
+    count = 0
+
+    def __init__(self, name, startTime, endTime, rainVolume):
         self.name = name
+        Station.count += 1
+        self.id = f"T{Station.count:02d}"
+        self.totalMinutes = self.calTotalMinutes(startTime, endTime)
         self.rainVolume = rainVolume
+        self.averageRainVolume = 0.0
+
+    def calTotalMinutes(self, startTime, endTime):
         start = Time(startTime)
         end = Time(endTime)
-        self.duration = start.timeDiff(end).hourToMinutes()
+        return start.timeDiffToTotalMinutes(end)
 
     def calAverageRainVolume(self):
-        self.avgVolume = self.rainVolume / self.duration
+        self.averageRainVolume = self.rainVolume / Time.minutesToHourDecimal(self.totalMinutes)
 
-    def updateRainVolume(self, newVolume):
-        self.rainVolume += newVolume
-    
-    def updateTime(self, startTime, endTime):
-        start = Time(startTime)
-        end = Time(endTime)
-        self.duration += start.timeDiff(end).hourToMinutes()
+    def getName(self):
+        return self.name
+
+    def updateRainVolume(self, newRainVolume):
+        self.rainVolume += newRainVolume
+
+    def addTime(self, startTime, endTime):
+        self.totalMinutes += self.calTotalMinutes(startTime, endTime)
 
     def __str__(self):
-        return f"{self.name} {self.avgVolume:.2f}"
+        return f"{self.id} {self.name} {self.averageRainVolume:.2f}"
 
 def main():
     n = int(input())
-    a = []
+    stations = []
+    station_map = {}
+
     for _ in range(n):
-        name = input()
-        notFound = True
-        startTime = input()
-        endTime = input()
-        newVolume = float(input())
-        for x in a:
-            if x.name == name:
-                notFound = False
-                x.updateTime(startTime, endTime)
-                x.updateRainVolume(newVolume)
-                break
-        if notFound:
-            a.append(Station(name, startTime, endTime, newVolume))
-    for x in a:
-        x.calAverageRainVolume()
-    for x in a:
-        print(str(x))
+        name = input().strip()
+        startTime = input().strip()
+        endTime = input().strip()
+        rainVolume = float(input().strip())
+
+        if name not in station_map:
+            station = Station(name, startTime, endTime, rainVolume)
+            stations.append(station)
+            station_map[name] = station
+        else:
+            station = station_map[name]
+            station.addTime(startTime, endTime)
+            station.updateRainVolume(rainVolume)
+
+    for station in stations:
+        station.calAverageRainVolume()
+
+    for station in stations:
+        print(station)
 
 if __name__ == '__main__':
     main()
