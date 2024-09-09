@@ -4,7 +4,7 @@ class Contestant:
 
     def __init__(self, name, ltScore, thScore) -> None:
         Contestant.count += 1
-        self.id = f"TS{Contestant.count:02d}"
+        self.id = f"TS0{Contestant.count}"
         self.name = name
         self.ltScore = normalizeScore(ltScore)
         self.thScore = normalizeScore(thScore)
