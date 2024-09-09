@@ -21,8 +21,8 @@ def main():
     # Write your code here
     dt = []
     
-    with open("pykt075/SOTAY.txt", 'r') as f:
-    # with open("SOTAY.txt", 'r') as f:
+    # with open("pykt075/SOTAY.txt", 'r') as f:
+    with open("SOTAY.txt", 'r') as f:
         s = f.readline().strip()
         day = s.split()[1]
         while True:
