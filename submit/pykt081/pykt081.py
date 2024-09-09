@@ -1,7 +1,13 @@
 # pykt081.py
 def testCase():
-    a = input().strip().split(".")
-    for x in a:
+    s = input().split(".")
+    if (len(s) != 4):
+        print("NO")
+        return
+    for x in s:
+        if not x.isdigit():
+            print("NO")
+            return
         if (int(x) < 0 or int(x) > 255):
             print("NO")
             return
