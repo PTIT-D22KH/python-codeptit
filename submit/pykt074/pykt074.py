@@ -5,15 +5,10 @@ def main():
     n = int(input())
     for _ in range(n):
         s = input()
-        a = s.strip().split(" ")
-        m = len(a)
-        res = ""
-        for i in range(m):
-            if (len(res) + len(a[i]) + 1 <= 100):
-                res += a[i] + " "
-        # print(len(res))
-        print(res)
-    
+        index = 99
+        while (index > 0 and index < len(s) and s[index] != ' '):
+            index -= 1
+        print(s[:min(index, len(s))])
 
 if __name__ == '__main__':
     main()
