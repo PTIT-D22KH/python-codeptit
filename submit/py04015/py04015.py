@@ -12,13 +12,13 @@ class Customer:
         # additionalCost = 0
         if (self.numUsed <= 50):
             basicCost = 100 * self.numUsed
-            return int(basicCost * 1.02)
+            return round(basicCost * 1.02)
         elif (self.numUsed <= 100):
             basicCost = 100 * 50 +  150  * (self.numUsed - 50)
-            return int(basicCost * 1.03)
+            return round(basicCost * 1.03)
         else:
             basicCost = 50 * 100 + 150 * 50 + 200 * (self.numUsed - 100)
-            return int(basicCost * 1.05)
+            return round(basicCost * 1.05)
 
     def __str__(self) -> str:
         return self.id + " " + self.name + " " + str(self.totalCost)
