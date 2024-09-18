@@ -1,6 +1,6 @@
-# pykt066.py
 import math
-def solve(a,n , k):
+
+def solve(a, n, k):
     min_length = float('inf')
     for i in range(n):
         curr_gcd = a[i]
@@ -15,14 +15,26 @@ def solve(a,n , k):
         return -1
     return min_length
 
-def testCase():
-    n, k = [int(i) for i in input().split()]
-    a = [int(i) for i in input().split()]
-    print(solve(a, n, k))
+def process_test_cases(e, I):
+    n, k = e[I], e[I+1]
+    I += 2
+    a = e[I:I+n]
+    I += n
+    result = solve(a, n, k)
+    print(result)
+    return I
+
 def main():
-    # Write your code here
-    for _ in range(int(input())):
-        testCase()
+    t = int(input())
+    e = []
+    while True:
+        try:
+            e.extend(map(int, input().split()))
+        except:
+            break
+    I = 0
+    for _ in range(t):
+        I = process_test_cases(e, I)
 
 if __name__ == '__main__':
     main()
