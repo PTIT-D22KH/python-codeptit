@@ -1,6 +1,5 @@
 # py01004.py
 import math
-
 def isPrime(n):
     if (n < 2):
         return False
@@ -17,15 +16,12 @@ def testCase() :
     if (isPrime(count) == True):
         print("YES")
     else:
-        print("NO")
-    
+        print("NO") 
 def main():
     # Write your code here
     t = int(input())
     while t > 0:
         testCase()
         t -= 1
-
-
 if __name__ == '__main__':
     main()
