@@ -12,7 +12,11 @@ def main():
         if d[x] == max_value:
             d[x] = 0
     res = max(d)
-    print(d.index(res) if res else "NONE")
+    if (d.index(res)):
+        print(d.index(res))
+    else:
+        print("NONE")
+    # print(d.index(res) if res else "NONE")
 
 if __name__ == '__main__':
     main()
