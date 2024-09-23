@@ -8,11 +8,11 @@ class Number:
         return str(self.value) + " " + str(self.fre)
 
 def cmp(a):
-    return a.rank
+    return a.value
 
 def main():
     s = input().strip()
-    
+    k = int(input())
     a = []
     b = set()
     c = []
@@ -37,8 +37,13 @@ def main():
             b.remove(x)
     
     a.sort(key=cmp)
+    ok = False
     for x in a:
-        print(str(x))
+        if x.fre >= k:
+            print(str(x))
+            ok = True
+    if not ok:
+        print("NOT FOUND")
 
 if __name__ == '__main__':
     main()
