@@ -13,7 +13,7 @@ def main():
     for i in range(end, 0, -1):
         if (check(i, a)):
             for j in range(n):
-                ans += int(a[j] / (i + 1)) + 1
+                res += int(a[j] / (i + 1)) + 1
             break
     print(res)
 
