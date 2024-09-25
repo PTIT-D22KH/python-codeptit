@@ -1,4 +1,11 @@
+
 ## py03013
+![alt text](image.png)
+
+- [README.md](README.md)
+- [input.txt](input.txt)
+- [output.txt](output.txt)
+- [py03013.py](py03013.py)
 The formula used in the function `f(x, n)` is based on the concept of counting digit occurrences in a range by examining each digit place (units, tens, hundreds, etc.). Let's break down the logic behind the formula and understand why it works.
 
 ### Concept
@@ -77,6 +84,3 @@ Let's go through an example to see how the formula works in practice.
 ### Summary
 
 The formula used in the function `f(x, n)` leverages the positional properties of digits to count occurrences efficiently. By breaking down the problem into smaller subproblems based on each digit place, the function can handle large ranges without iterating through every number. This approach ensures that the solution is both efficient and scalable.
-- [py03013.py](py03013.py)
-- [input.txt](input.txt)
-- [output.txt](output.txt)
