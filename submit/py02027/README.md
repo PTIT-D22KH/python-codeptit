@@ -1,4 +1,7 @@
+
 ## py02027
-- [py02027.py](py02027.py)
+![alt text](image.png)
+- [README.md](README.md)
 - [input.txt](input.txt)
 - [output.txt](output.txt)
+- [py02027.py](py02027.py)
