@@ -34,7 +34,7 @@ def main():
             # print(integerPart)
             integerPart = str(int(integerPart))
             x = ""
-            for i in range(len(integerPart) - 1, 0, -1):
+            for i in range(0, len(integerPart) - 1, 1):
                 if (integerPart[i].isdigit()):
                     count += 1
                     x += integerPart[i]
@@ -42,7 +42,7 @@ def main():
                     if (count == 3):
                         x += ","
                         count = 0
-            x += integerPart[0]
+            x += integerPart[-1]
 
             
 
@@ -62,7 +62,7 @@ def main():
             # print(x)
             # res = x[::-1]
             # res = str(int(res))
-            res = x
+            res = x[::-1]
             
             curr = 0
             while (res[curr] == '0' or not res[curr].isdigit()):
