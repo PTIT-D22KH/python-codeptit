@@ -7,3 +7,5 @@
 - [input.txt](input.txt)
 - [output.txt](output.txt)
 - [py01025.py](py01025.py)
+- [py01025_1.py](py01025_1.py)
+- [py01025_2.py](py01025_2.py)
