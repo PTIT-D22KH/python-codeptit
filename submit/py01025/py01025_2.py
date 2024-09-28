@@ -11,13 +11,15 @@ def main():
         if (s.count(".") > 1):
             raise Exception("So ban nhap vao khong phai so thuc")
         if (s.count(".") == 1):
+            if s[0] == '.':
+                s = "0" + s
             t = len(s) - 1
             tempDecimalPart = ""
             while (s[t] != '.'):
                 if not s[t].isalpha():
                     tempDecimalPart += s[t]
                 t -= 1
-            tempDecimalPart += "."
+            tempDecimalPart += s[t]
             tempDecimalPart = tempDecimalPart[::-1]
             # print(tempDecimalPart)
             
