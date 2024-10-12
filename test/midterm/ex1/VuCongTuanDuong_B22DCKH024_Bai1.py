@@ -1,75 +1,9 @@
-# def maximalSquare(matrix):
-#     if not matrix:
-#         return 0
-
-#     rows, cols = len(matrix), len(matrix[0])
-#     dp = [[0] * cols for _ in range(rows)]
-#     max_side = 0
-
-#     for i in range(rows):
-#         for j in range(cols):
-#             if matrix[i][j] == '1':
-#                 if i == 0 or j == 0:
-#                     dp[i][j] = 1
-#                 else:
-#                     dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
-#                 max_side = max(max_side, dp[i][j])
-
-#     return max_side * max_side
-
-# def maximalRectangle(matrix):
-#     if not matrix:
-#         return 0
-
-#     rows, cols = len(matrix), len(matrix[0])
-#     heights = [0] * cols
-#     max_area = 0
-
-#     for i in range(rows):
-#         for j in range(cols):
-#             if matrix[i][j] == '1':
-#                 heights[j] += 1
-#             else:
-#                 heights[j] = 0
-
-#         max_area = max(max_area, largestRectangleArea(heights))
-
-#     return max_area
-
-# def largestRectangleArea(heights):
-#     stack = []
-#     max_area = 0
-#     heights.append(0)
-
-#     for i in range(len(heights)):
-#         while stack and heights[i] < heights[stack[-1]]:
-#             h = heights[stack.pop()]
-#             w = i if not stack else i - stack[-1] - 1
-#             max_area = max(max_area, h * w)
-#         stack.append(i)
-
-#     heights.pop()
-#     return max_area
-
-# def main():
-#     n = int(input())
-#     m = int(input())
-#     matrix = []
-#     for i in range(n):
-#         a = input().split()
-#         matrix.append(a)
-#     print("Maximal Square Area:", maximalSquare(matrix))
-#     print("Maximal Rectangle Area:", maximalRectangle(matrix))
-
-# if __name__ == "__main__":
-#     main()    
-
-
 def maximalSquare(matrix):
     if not matrix:
         return 0, []
 
-    rows, cols = len(matrix), len(matrix[0])
+    rows = len(matrix)
+    cols = len(matrix[0])
     dp = [[0] * cols for _ in range(rows)]
     max_side = 0
     squares = []
@@ -93,7 +27,8 @@ def maximalRectangle(matrix):
     if not matrix:
         return 0, []
 
-    rows, cols = len(matrix), len(matrix[0])
+    rows = len(matrix)
+    cols = len(matrix[0])
     heights = [0] * cols
     max_area = 0
     rectangles = []
@@ -136,22 +71,23 @@ def largestRectangleArea(heights, row):
     return max_area, coords
 
 def main():
-    n = int(input())
-    m = int(input())
+    n = int(input("Enter number of rows: "))
+    m = int(input("Enter number of columns: "))
     matrix = []
+    print("Enter the matrix row by row:")
     for i in range(n):
-        a = [int(j) for j in input().split()]
-        matrix.append(a)
-    # print(matrix)
+        row = list(map(int, input().split()))
+        matrix.append(row)
+
     square_area, square_coords = maximalSquare(matrix)
     print("Maximal Square Area:", square_area)
     for coord in square_coords:
-        print([list(coord[0]), list(coord[1])])
+        print("Top-left:", (coord[0][0] + 1, coord[0][1] + 1), "Bottom-right:", (coord[1][0] + 1, coord[1][1] + 1))
 
     rectangle_area, rectangle_coords = maximalRectangle(matrix)
     print("Maximal Rectangle Area:", rectangle_area)
     for coord in rectangle_coords:
-        print([list(coord[0]), list(coord[1])])
+        print("Top-left:", (coord[0][0] + 1, coord[0][1] + 1), "Bottom-right:", (coord[1][0] + 1, coord[1][1] + 1))
 
 if __name__ == "__main__":
     main()
