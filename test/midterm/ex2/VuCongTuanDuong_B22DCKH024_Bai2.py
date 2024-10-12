@@ -18,7 +18,7 @@ def formatNum(x):
         return int(x)
     return x
 
-a = [float(i) for i in input().split()]
+a = [float(i) for i in input("Nhap mang:").split()]
 n = len(a)
 solve(0, a)
 print(f"Tong so cach: {len(res)}")
