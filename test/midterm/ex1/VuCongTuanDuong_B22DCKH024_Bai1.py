@@ -142,7 +142,7 @@ def main():
     for i in range(n):
         a = [int(j) for j in input().split()]
         matrix.append(a)
-    print(matrix)
+    # print(matrix)
     square_area, square_coords = maximalSquare(matrix)
     print("Maximal Square Area:", square_area)
     for coord in square_coords:

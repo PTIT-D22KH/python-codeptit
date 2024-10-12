@@ -12,20 +12,26 @@ def count_vowel_permutations(N):
     }
 
     dp = {v: [0] * (N + 1) for v in vowels}
+    #dp[n][v] la so chuoi co chieu dai n ket thuc voi nguyen am v
 
-    # Initialize for strings of length 1
+    # so chuoi co chieu dai 1 la nguyen am thi chi co duy nhat 1
     for v in vowels:
         dp[v][1] = 1
 
-    # Fill the dp table
+
     for n in range(2, N + 1):
         for v in vowels:
-            dp[v][n] = sum(dp[prev_v][n - 1] for prev_v in transitions[v])
+            dp[v][n] = 0
+            for prev_v in transitions[v]:
+                dp[v][n] += dp[prev_v][n - 1]
 
-    # Sum up all the ways to form strings of length N
-    result = sum(dp[v][N] for v in vowels)
+
+    result = 0
+    for v in vowels:
+        result += dp[v][N]
+
     return result
 
-# Example usage:
-N = 5
-print(f"Number of valid strings of length {N}: {count_vowel_permutations(N)}")
+
+N = int(input())
+print(f"So chuoi duoc tao nen tu luat tren ma co chieu dai {N}: {count_vowel_permutations(N)}")
