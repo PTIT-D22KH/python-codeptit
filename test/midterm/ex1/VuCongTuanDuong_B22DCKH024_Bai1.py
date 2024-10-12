@@ -4,7 +4,9 @@ def maximalSquare(matrix):
 
     rows = len(matrix)
     cols = len(matrix[0])
-    dp = [[0] * cols for _ in range(rows)]
+    dp = []
+    for i in range(rows):
+        dp.append([0] * cols)
     max_side = 0
     squares = []
 
@@ -17,9 +19,14 @@ def maximalSquare(matrix):
                     dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
                 if dp[i][j] > max_side:
                     max_side = dp[i][j]
-                    squares = [((i - max_side + 1, j - max_side + 1), (i, j))]
+                    squares = []
+                    top_left = (i - max_side + 1, j - max_side + 1)
+                    bottom_right = (i, j)
+                    squares.append((top_left, bottom_right))
                 elif dp[i][j] == max_side:
-                    squares.append(((i - max_side + 1, j - max_side + 1), (i, j)))
+                    top_left = (i - max_side + 1, j - max_side + 1)
+                    bottom_right = (i, j)
+                    squares.append((top_left, bottom_right))
 
     return max_side * max_side, squares
 
@@ -58,13 +65,21 @@ def largestRectangleArea(heights, row):
     for i in range(len(heights)):
         while stack and heights[i] < heights[stack[-1]]:
             h = heights[stack.pop()]
-            w = i if not stack else i - stack[-1] - 1
+            if not stack:
+                w = i
+            else:
+                w = i - stack[-1] - 1
             area = h * w
             if area > max_area:
                 max_area = area
-                coords = [((row - h + 1, i - w), (row, i - 1))]
+                coords = []
+                top_left = (row - h + 1, i - w)
+                bottom_right = (row, i - 1)
+                coords.append((top_left, bottom_right))
             elif area == max_area:
-                coords.append(((row - h + 1, i - w), (row, i - 1)))
+                top_left = (row - h + 1, i - w)
+                bottom_right = (row, i - 1)
+                coords.append((top_left, bottom_right))
         stack.append(i)
 
     heights.pop()
@@ -76,7 +91,10 @@ def main():
     matrix = []
     print("Enter the matrix row by row:")
     for i in range(n):
-        row = list(map(int, input().split()))
+        row = []
+        row_input = input().split()
+        for num in row_input:
+            row.append(int(num))
         matrix.append(row)
 
     square_area, square_coords = maximalSquare(matrix)
