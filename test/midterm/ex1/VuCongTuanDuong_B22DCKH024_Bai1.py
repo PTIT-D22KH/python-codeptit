@@ -20,13 +20,13 @@ def maximalSquare(matrix):
                 if dp[i][j] > max_side:
                     max_side = dp[i][j]
                     squares = []
-                    top_left = (i - max_side + 1, j - max_side + 1)
-                    bottom_right = (i, j)
-                    squares.append((top_left, bottom_right))
+                    top_left = [i - max_side + 1, j - max_side + 1]
+                    bottom_right = [i, j]
+                    squares.append([top_left, bottom_right])
                 elif dp[i][j] == max_side:
-                    top_left = (i - max_side + 1, j - max_side + 1)
-                    bottom_right = (i, j)
-                    squares.append((top_left, bottom_right))
+                    top_left = [i - max_side + 1, j - max_side + 1]
+                    bottom_right = [i, j]
+                    squares.append([top_left, bottom_right])
 
     return max_side * max_side, squares
 
@@ -73,23 +73,23 @@ def largestRectangleArea(heights, row):
             if area > max_area:
                 max_area = area
                 coords = []
-                top_left = (row - h + 1, i - w)
-                bottom_right = (row, i - 1)
-                coords.append((top_left, bottom_right))
+                top_left = [row - h + 1, i - w]
+                bottom_right = [row, i - 1]
+                coords.append([top_left, bottom_right])
             elif area == max_area:
-                top_left = (row - h + 1, i - w)
-                bottom_right = (row, i - 1)
-                coords.append((top_left, bottom_right))
+                top_left = [row - h + 1, i - w]
+                bottom_right = [row, i - 1]
+                coords.append([top_left, bottom_right])
         stack.append(i)
 
     heights.pop()
     return max_area, coords
 
 def main():
-    n = int(input("Enter number of rows: "))
-    m = int(input("Enter number of columns: "))
+    n = int(input("Nhập số hàng: "))
+    m = int(input("Nhập số cột: "))
     matrix = []
-    print("Enter the matrix row by row:")
+    print("Nhập ma trận:")
     for i in range(n):
         row = []
         row_input = input().split()
@@ -98,14 +98,16 @@ def main():
         matrix.append(row)
 
     square_area, square_coords = maximalSquare(matrix)
-    print("Maximal Square Area:", square_area)
+    print(f"Diện tích hình vuông lớn nhất = {square_area}")
     for coord in square_coords:
-        print("Top-left:", (coord[0][0] + 1, coord[0][1] + 1), "Bottom-right:", (coord[1][0] + 1, coord[1][1] + 1))
+        # print(coord)
+        print([[coord[0][0] + 1, coord[0][1] + 1], [coord[1][0] + 1, coord[1][1] + 1]])
 
     rectangle_area, rectangle_coords = maximalRectangle(matrix)
-    print("Maximal Rectangle Area:", rectangle_area)
+    print(f"Diện tích hình chữ nhật lớn nhất = {rectangle_area}")
     for coord in rectangle_coords:
-        print("Top-left:", (coord[0][0] + 1, coord[0][1] + 1), "Bottom-right:", (coord[1][0] + 1, coord[1][1] + 1))
+        # print(coord)
+        print([[coord[0][0] + 1, coord[0][1] + 1], [coord[1][0] + 1, coord[1][1] + 1]])
 
 if __name__ == "__main__":
     main()
