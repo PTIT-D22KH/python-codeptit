@@ -11,9 +11,8 @@ def solve(arr):
     all_results = []
 
     for length in range(1, n + 1):
-        for indices in combinations(range(n), length):
-            b = [arr[i] for i in indices]
-            
+        for index in combinations(range(n), length):
+            b = [arr[i] for i in index]
             if is_non_decreasing(b):
                 if length > max_length:
                     max_length = length
