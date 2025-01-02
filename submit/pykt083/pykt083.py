@@ -1,29 +1,21 @@
-# pykt083.py
-
-def main():
-    # Write your code here
-    d = {}
-    a = []
-    topic = ""
-    isTopic = True
-    for _ in range(int(input())):
-        s = input()
-        if (s.strip() == ""):
-            topic = ""
-            isTopic = True
-        else:
-            if not isTopic:
-                d[topic].append(s)
+d = {"Xe_con":{5:10000, 7:15000}, "Xe_khach":{29:50000, 45:70000}, "Xe_tai": 20000}
+# print(type(d) == dict)
+res = {}
+for _ in range(int(input())):
+    s = input().split()
+    # print(s)
+    if (s[3] == "IN"):
+        # print(s)
+        if (type(d[s[1]]) == dict):
+            # print(s)
+            if s[4] not in res:
+                res[s[4]] = d[s[1]][int(s[2])]
             else:
-                topic = s
-                d[topic] = []
-                isTopic = False
-            if len(d) == 0:
-                topic = s
-                isTopic = False
-    for key,value in d.items():
-        print(f"{key}: {len(value)}")
-    
-        
-if __name__ == '__main__':
-    main()
+                res[s[4]] += d[s[1]][int(s[2])]
+        else:
+            if s[4] not in res:
+                res[s[4]] = d[s[1]]
+            else:
+                res[s[4]] += d[s[1]]
+for key, value in res.items():
+    print(f"{key}: {value}")
